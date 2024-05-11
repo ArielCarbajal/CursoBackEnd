@@ -100,7 +100,7 @@ let personas3 = [
 let personasOrdenadas = personas3.sort((a,b) => a.edad -b.edad)
 console.log(personasOrdenadas)
 
-//Ejercicio 8
+// Ejercicio 8
 function validarObjeto(objeto){
     const propiedades = ['nombre','direccion','telefono'];
     for(let propiedad of propiedades){
@@ -144,7 +144,7 @@ let estudiante = [
     {nombre: "Anderson", edad: 21}
 ]
 
-let profesores = [
+let profesores = [  
     {nombre: "Juan", materia: "Matematicas"},
     {nombre: "Medrado", materia: "Lenguaje"},
     {nombre: "Antonio", materia: "Ciencias"}
