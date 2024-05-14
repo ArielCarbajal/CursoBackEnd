@@ -1,13 +1,16 @@
 {
   "dependencies": {
-    "lodash": "^4.17.21"
+    "express": "^4.19.2",
+    "lodash": "^4.17.21",
+    "nodemon": "^3.1.0"
   },
   "name": "clase5",
   "version": "1.0.0",
   "main": "Clase5.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "iniciarMain": "node Clase5.js",
+    "server": "nodemon Clase5.js"
   },
   "keywords": [],
   "author": "",
