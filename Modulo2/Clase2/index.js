@@ -1,6 +1,6 @@
-import yargs, { demandOption, describe } from "yargs";
+import yargs from "yargs";
 import { hideBin } from 'yargs/helpers'
-import { agregarNotas, eliminarNotas, listarNotas, leerNotas } from './utiles/notas'
+import { agregarNotas, eliminarNotas, listarNotas, leerNotas } from './utiles/notas.js'
 
 yargs(hideBin(process.argv))
     .command({
@@ -15,8 +15,8 @@ yargs(hideBin(process.argv))
             body: {
                 describe: 'Cuerpo de la nota',
                 demandOption: true,
-                type: 'String'
-            }
+                type: 'string'
+            },
         },
         handler(argv){
             agregarNotas(argv.title, argv.body)
@@ -30,7 +30,7 @@ yargs(hideBin(process.argv))
                 describe: 'Titulo de la nota',
                 demandOption: true,
                 type: 'string'
-            }
+            },
         },
         handler(argv){
             eliminarNotas(argv.title)
@@ -51,9 +51,10 @@ yargs(hideBin(process.argv))
                 describe: 'Titulo de la nota',
                 demandOption: true,
                 type: 'string'
-            }
+            },
         },
         handler(argv){
             leerNotas(argv.title)
         }
     })
+    .parse()

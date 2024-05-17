@@ -3,27 +3,29 @@ import chalk from 'chalk'
 
 const cargarNotas = () => {
     try {
-        const dataBuffer = fs.readFile("notas.json")
+        const dataBuffer = fs.readFileSync("notas.json")
         const dataJson = dataBuffer.toString();
         return JSON.parse(dataJson)
     } catch (error) {
-        return {}
+        return [];
     }
 }
 
 const guardarNotas = (notas) => {
     const dataJson = JSON.stringify(notas)
-    fs.writeFileSync('notas.js', dataJson)
+    fs.writeFileSync('notas.json', dataJson)
 }
 
 const agregarNotas = (title, body) => {
-    const notas = cargarNotas()
-    const duplicateNote = notas.find((note)=> note.title === title)
+    const notas = cargarNotas();
+    const duplicateNote = notas.find((note)=>{
+        note.title === title
+    })
 
     if(!duplicateNote){
         notas.push({
             title,
-            body
+            body,
         })
         guardarNotas(notas)
         console.log(chalk.green.inverse('Nota agregada'))
@@ -33,7 +35,7 @@ const agregarNotas = (title, body) => {
 }
 
 const eliminarNotas = (title) =>{
-    const notas = cargarNotas()
+    const notas = cargarNotas();
     const notasToKeep = notas.filter((note) => note.title !== title)
 
     if(notas.length > notasToKeep.length){
@@ -45,15 +47,15 @@ const eliminarNotas = (title) =>{
 }
 
 const listarNotas = () => {
-    const notas = cargarNotas()
-    console.log(chalk.inverse('Tus notas'))
-    notas.forEach((note) => {
-        console.log(note.title)
+    const notas = cargarNotas();
+    console.log(chalk.inverse("Tus notas"))
+    notas.forEach((element) => {
+        console.log(element.title)
     });
 }
 
 const leerNotas = (title) => {
-    const notas = cargarNotas()
+    const notas = cargarNotas();
     const note = notas.find((note) => note.title === title)
 
     if(note){
