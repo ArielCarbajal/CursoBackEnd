@@ -5,40 +5,40 @@ const cargarNotas = () => {
     try {
         const dataBuffer = fs.readFileSync("notas.json")
         const dataJson = dataBuffer.toString();
-        return JSON.parse(dataJson)
-    } catch (error) {
+        return JSON.parse(dataJson);
+    } catch {
         return [];
     }
 }
 
 const guardarNotas = (notas) => {
-    const dataJson = JSON.stringify(notas)
-    fs.writeFileSync('notas.json', dataJson)
+    const dataJson = JSON.stringify(notas);
+    fs.writeFileSync("notas.json", dataJson);
 }
 
 const agregarNotas = (title, body) => {
     const notas = cargarNotas();
-    const duplicateNote = notas.find((note)=>{
-        note.title === title
-    })
-
-    if(!duplicateNote){
-        notas.push({
-            title,
-            body,
-        })
-        guardarNotas(notas)
-        console.log(chalk.green.inverse('Nota agregada'))
-    }else{
-        console.log(chalk.red.inverse('Nota no agregada'))
+    const duplicateNote = notas.find((note) => {
+      note.title === title;
+    });
+  
+    if (!duplicateNote) {
+      notas.push({
+        title,
+        body,
+      });
+      guardarNotas(notas);
+      console.log(chalk.green.inverse("nota agregada"));
+    } else {
+      console.log(chalk.red.inverse("Nota no agregada"));
     }
-}
+  };
 
 const eliminarNotas = (title) =>{
     const notas = cargarNotas();
     const notasToKeep = notas.filter((note) => note.title !== title)
 
-    if(notas.length > notasToKeep.length){
+    if(notas.length > notasToKeep   .length){
         guardarNotas(notasToKeep)
         console.log(chalk.green.inverse('Nota elminada'))
     }else{
@@ -66,9 +66,16 @@ const leerNotas = (title) => {
     }
 }
 
-export{
-    agregarNotas,
-    eliminarNotas,
-    listarNotas,
-    leerNotas
-}
+const editarNotas = (title, nuevaNota) => {
+    const notas = cargarNotas();
+    const note = notas.find((note) => note.title === title);
+    if(note) {
+        note.body = nuevaNota;
+        guardarNotas(notas);
+        console.log(chalk.green.inverse('La nota se modificó correctamente'));
+    } else {
+        console.log(chalk.red.inverse('Nota no encontrada'));
+    }
+};
+
+export{ agregarNotas, eliminarNotas, listarNotas, leerNotas, editarNotas }
