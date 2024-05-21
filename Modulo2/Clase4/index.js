@@ -14,10 +14,10 @@
 
 // const hoy
 
-import { suma , resta } from './funciones.js'
+// import { suma , resta } from './funciones.js'
 
-const resultadoSuma = suma(10,2)
-const resultadoResta = resta(8,1)
+// const resultadoSuma = suma(10,2)
+// const resultadoResta = resta(8,1)
 
-console.log(`El resultado de la suma es: ${resultadoSuma}`);
-console.log(`El resultado de la resta es: ${resultadoResta}`);
+// console.log(`El resultado de la suma es: ${resultadoSuma}`);
+// console.log(`El resultado de la resta es: ${resultadoResta}`);
