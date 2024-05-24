@@ -25,7 +25,7 @@ app.get("/tasks/:id", (req, res) => {
   if (tasks) {
     res.json(task);
   } else {
-    res.status(404).send("N se encontró una tarea");
+    res.status(404).send("No se encontró una tarea");
   }
 });
 
@@ -38,7 +38,7 @@ app.put("/tasks/:id", (req, res) => {
       req.body.completed !== undefined ? req.body.completed : task.completed;
     res.json(task);
   } else {
-    res.status(404).send("N se encontró una tarea");
+    res.status(404).send("No se encontró una tarea");
   }
 });
 
@@ -49,7 +49,7 @@ app.delete("/tasks/:id", (req, res) => {
     tasks.splice(taskin, 1);
     res.status(204).send();
   } else {
-    res.status(404).send("N se encontró una tarea");
+    res.status(404).send("No se encontró una tarea");
   }
 });
 
