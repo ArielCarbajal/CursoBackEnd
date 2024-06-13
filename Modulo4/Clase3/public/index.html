@@ -7,9 +7,10 @@
 </head>
 <body>
     <h1>Productos</h1>
+    <button id="generarReporte">Generar Reporte</button>
     <div id="productos"></div>
     <script>
-        document.addEventListener('DOMContentLoad', function(){
+        document.addEventListener('DOMContentLoaded', function(){
             fetch("/api/producto")
             .then(response  => response.json())
             .then(productos => {
@@ -35,9 +36,24 @@
                     productoD.appendChild(productoInfo)
                     productosD.appendChild(productoD)
                 });
-            })
+            })        
             .catch(error => console.error('Error: ', error))
         })
+
+        document.getElementById('generarReporte').addEventListener('click', function() {
+                fetch('/api/producto/reporte')
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob)
+                    const a = document.createElement('a')
+                    a.href = url
+                    a.download = `Reporte_Productos_${new Date().toLocaleDateString()}.pdf`
+                    document.body.appendChild(a)
+                    a.click()
+                    a.remove()
+                })
+                .catch((error) => console.error("Error", error));
+            })
     </script>
     
 </body>
